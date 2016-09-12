@@ -1,16 +1,13 @@
-function Calculator() {
-    // constructor init values
-    this.working = 0;
-}
-
 function UserException(message) {
     this.message = message;
     this.name = "UserException";
 }
 
-Calculator.prototype = {
-    constructor: Calculator,
-    add: function () {
+class Calculator {
+    constructor () {
+        this.working = 0;
+    }
+    add () {
         // input: any quantity of numbers
         try {
             // check whether all arguments are type number
@@ -28,9 +25,8 @@ Calculator.prototype = {
         catch (e) {
             console.log(e.name, e.message);
         }
-    },
-
-    subtract: function () {
+    }
+    subtract () {
         // input: any quantity of numbers
         try {
             // check whether all arguments are type number
@@ -48,18 +44,15 @@ Calculator.prototype = {
         catch (e) {
             console.log(e.name, e.message);
         }
-    },
-
-    equals: function () {
+    }
+    equals () {
         console.log(this.working);
         return this.working;
-    },
-
-    clearWorking: function () {
+    }
+    clearWorking () {
         this.working = 0;
-    },
-
-    multiply: function (number) {
+    }
+    multiply (number) {
         // input: a single number
         try {
             if (typeof number != "number") {
@@ -72,9 +65,8 @@ Calculator.prototype = {
         catch (e) {
             console.log(e.name, e.message);
         }
-    },
-
-    divide: function (number) {
+    }
+    divide (number) {
         try {
             if (typeof number != "number") {
                 throw new UserException("invalid type; expected number, got " + number + " (type: " + typeof number);
@@ -86,9 +78,8 @@ Calculator.prototype = {
         catch (e) {
             console.log(e.name, e.message);
         }
-    },
-
-    setWorking: function (number) {
+    }
+    setWorking (number) {
         try {
             if (typeof number != "number") {
                 throw new UserException("invalid type; expected number, got " + number + " (type: " + typeof number);
@@ -101,10 +92,7 @@ Calculator.prototype = {
             console.log(e.name, e.message);
         }
     }
-};
-
-
-
+}
 var calculator1 = new Calculator();
 
 window.activeCalculator = calculator1;
