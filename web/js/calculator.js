@@ -52,6 +52,7 @@ Calculator.prototype = {
 
     equals: function () {
         console.log(this.working);
+        return this.working;
     },
 
     clearWorking: function () {
@@ -85,12 +86,29 @@ Calculator.prototype = {
         catch (e) {
             console.log(e.name, e.message);
         }
+    },
+
+    setWorking: function (number) {
+        try {
+            if (typeof number != "number") {
+                throw new UserException("invalid type; expected number, got " + number + " (type: " + typeof number);
+            }
+            else {
+                this.working = number;
+            }
+        }
+        catch (e) {
+            console.log(e.name, e.message);
+        }
     }
 };
 
 
 
 var calculator1 = new Calculator();
+
+window.activeCalculator = calculator1;
+
 // calculator1.add(1, 2, 3);
 // calculator1.subtract(10);
 // // calculator1.clearWorking();

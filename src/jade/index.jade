@@ -10,10 +10,13 @@ html
         h1
             | Calculator
         input(type="text" placeholder="Enter a value" id="working-input")
-        button(type="button" id="add-button") Add
-        button(type="button") Subtract
-        button(type="button") Multiply
-        button(type="button") Divide
+        div#buttons
+            button(type="button" id="add-button") Add
+            button(type="button") Subtract
+            button(type="button") Multiply
+            button(type="button") Divide
+            button(type="button" id="equals-button") Equals
+
 
         script(src="js/page-interaction.js")
 
