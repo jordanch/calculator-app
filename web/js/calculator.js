@@ -10,48 +10,15 @@ function UserException(message) {
 
 Calculator.prototype = {
     constructor: Calculator,
-    add: function () {
-        // input: any quantity of numbers
-        try {
-            // check whether all arguments are type number
-            for (key in arguments) {
-                if (typeof arguments[key] != "number") {
-                    throw new UserException("invalid input type; expected type number, got " +
-                    arguments[key] + " (type: " + typeof arguments[key] + ")");
-                }
-            }
-            // if all arguments are type number execution continues
-            for (key in arguments) {
-                this.working += parseInt(arguments[key]);
-            }
-        }
-        catch (e) {
-            console.log(e.name, e.message);
-        }
+    add: function (number) {
+        this.working += number;
     },
 
-    subtract: function () {
-        // input: any quantity of numbers
-        try {
-            // check whether all arguments are type number
-            for (key in arguments) {
-                if (typeof arguments[key] != "number") {
-                    throw new UserException("invalid input type; expected type number, got " +
-                        arguments[key] + " (type: " + typeof arguments[key] + ")");
-                }
-            }
-            // if all arguments are type number execution continues
-            for (key in arguments) {
-                this.working -= parseInt(arguments[key]);
-            }
-        }
-        catch (e) {
-            console.log(e.name, e.message);
-        }
+    subtract: function (number) {
+        this.working -= number;
     },
 
     equals: function () {
-        console.log(this.working);
         return this.working;
     },
 
@@ -60,46 +27,28 @@ Calculator.prototype = {
     },
 
     multiply: function (number) {
-        // input: a single number
-        try {
-            if (typeof number != "number") {
-                throw new UserException("invalid type; expected number, got " + number + " (type: " + typeof number);
-            }
-            else {
-                this.working *= number;
-            }
-        }
-        catch (e) {
-            console.log(e.name, e.message);
-        }
+        this.working *= number;
     },
 
     divide: function (number) {
-        try {
-            if (typeof number != "number") {
-                throw new UserException("invalid type; expected number, got " + number + " (type: " + typeof number);
-            }
-            else {
-                this.working /= number;
-            }
-        }
-        catch (e) {
-            console.log(e.name, e.message);
-        }
+        this.working /= number;
     },
 
     setWorking: function (number) {
-        try {
-            if (typeof number != "number") {
-                throw new UserException("invalid type; expected number, got " + number + " (type: " + typeof number);
-            }
-            else {
-                this.working = number;
-            }
+        this.working = number;
+    },
+
+    // this function is called before each calculation operation to validate the input datatype
+    validateInput: function (inputNumberOrText) {
+        // check whether all arguments are type number
+        console.log(typeof inputNumberOrText === "string");
+        console.log(typeof parseInt(inputNumberOrText));
+        if (typeof inputNumberOrText === "string" && parseInt(inputNumberOrText) ===  ) {
+                console.log("invalid input type; expected type number, got " +
+                    arguments[key] + " (type: " + typeof arguments[key] + ")");
+                throw new UserException("Please enter a valid input");
         }
-        catch (e) {
-            console.log(e.name, e.message);
-        }
+        console.log("Input has been validated. Most likely a number");
     }
 };
 

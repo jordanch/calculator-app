@@ -15,24 +15,29 @@ var workingInput = document.getElementById("working-input"),
 
 buttonsDiv.addEventListener("click", function(e) {
     // this element handles click events that bubble up from any of the buttons and changes visual state
-    // first set the calculator's working number before changing visual state
 
     // change visual state and execute operations based on whichever button is clicked
-    switch (e.target.id) {
-        case "add-button":
-            // set the calculator's working value
-            performCalculatorOperation(window.activeCalculator, "set");
-            // set current working operation
-            currentOperation = "add";
-            workingInput.value = "";
-            workingInput.attributes.placeholder.nodeValue = "Enter value to add";
-            break;
-        case "equals-button":
-            // equal button executes the previous operation
-            performCalculatorOperation(window.activeCalculator, currentOperation);
-            workingInput.value = performCalculatorOperation(window.activeCalculator, "equals");
-            currentOperation = "ce";
-            break;
+    try {
+        window.activeCalculator.validateInput(workingInput.value);
+        switch (e.target.id) {
+            case "add-button":
+                // set the calculator's working value
+                performCalculatorOperation(window.activeCalculator, "set");
+                // set current working operation
+                currentOperation = "add";
+                workingInput.value = "";
+                workingInput.attributes.placeholder.nodeValue = "Enter value to add";
+                break;
+            case "equals-button":
+                // equal button executes the previous operation
+                performCalculatorOperation(window.activeCalculator, currentOperation);
+                workingInput.value = performCalculatorOperation(window.activeCalculator, "equals");
+                currentOperation = "ce";
+                break;
+        }
+    }
+    catch (e) {
+        workingInput.value = e.message;
     }
 });
 
